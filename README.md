@@ -3,11 +3,10 @@ It works on two accounts. main account and bot.
 It logs only deleted messages, along with photos and files
 ____ 
 ## manual
-- to use it, you need to install [node.js](https://nodejs.org)
+- to use it, you need to install [node.js](https://nodejs.org) and write in console on directory ``` npm i ```
 - write in console 
 ```
     node index.js 
-    npm i
 ``` 
 or use "start.bat"(before use .bat file enter the path to the folder where it is located "index.js") 
 - you can add a shortcut to "start. bat" in windows startup (win + r and write ```shell:startup```)
