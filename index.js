@@ -1,12 +1,12 @@
 const Discord = require('discord.js-selfbot');
 const clientLog = new Discord.Client();
 const clientCheck = new Discord.Client();
-let tokenLog = ""; //selflog // token bot or self-bot
-let token = ""; // me // your token main acount
+let tokenLog = "token"; //selflog // token self-bot (common bot soon)
+let token = "token"; // me // your token main acount
 let prefix = ">";
 let BotVersion = "1.0";
-const channelss =[]// your guilds here
-
+const servers =["id server 1"," id server 2", "...", "..."]// your servers that you want to log
+const logChannel = "channel ID where is logging" // id channel where do you want to log
 
 
 clientLog.on('ready', () => {
@@ -14,7 +14,7 @@ clientLog.on('ready', () => {
     console.log(`Logged in as ${clientLog.user.tag}!`);
     //	clientLog.channels.cache.get(`channel id`).send(`Logged in as ${clientLog.user.tag}!`)
     clientLog.user.setActivity("Я слежу за тобой, ничтожество");
-    clientLog.channels.cache.get('859744234886529044').send(`i am ready! :face_with_monocle: `)
+    clientLog.channels.cache.get(logChannel).send(`i am ready! :face_with_monocle: `)
 });
 
 clientLog.on('message', message => {
@@ -29,7 +29,7 @@ clientLog.on('message', message => {
 });
 
 clientCheck.on("messageDelete", function(message){
-    if (!channelss.includes(message.guild.id)) return;
+    if (!servers.includes(message.guild.id)) return;
     
     if(message.attachments.first() != undefined){
         let tmpUrl = message.attachments.first().url;
@@ -43,7 +43,7 @@ clientCheck.on("messageDelete", function(message){
         .setColor('#407bc7')
         .setImage(tmpUrl)
         .setTimestamp();
-        clientLog.channels.cache.get('85974423488652').send(delEmbed); //id chennal where do you want to log
+        clientLog.channels.cache.get(logChannel).send(delEmbed); //id channel where do you want to log
       }
       else{
       let delEmbed = new Discord.MessageEmbed() 
@@ -55,7 +55,7 @@ clientCheck.on("messageDelete", function(message){
         .addField('Author', `${message.author.tag}`, true)
         .setColor('#407bc7')
         .setTimestamp();
-        clientLog.channels.cache.get('859744234886529').send(delEmbed); //id chennal where do you want to log
+        clientLog.channels.cache.get(logChannel).send(delEmbed); //id channel where do you want to log
       }
         
 
