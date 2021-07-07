@@ -30,6 +30,8 @@ clientLog.on('message', message => {
 
 clientCheck.on("messageDelete", function(message){
     if (!servers.includes(message.guild.id)) return;
+    let setTitles = 'Deleted message'
+    if(message.edits[1]) { setTitles = 'Deleted message (edited)' }
 
     messageSended = `${message.createdAt}`
     messageSended = messageSended.substring(messageSended.lastIndexOf('G') - 21, messageSended.lastIndexOf('G'))
@@ -38,13 +40,13 @@ clientCheck.on("messageDelete", function(message){
         let tmpUrl = message.attachments.first().url;
         let delEmbed = new Discord.MessageEmbed()// log message style, change if you want
         .setAuthor(message.author.username, "https://cdn.discordapp.com/avatars/" + message.author.id + "/" + message.author.avatar + ".png")
-        .setTitle('Deleted message')
+        .setTitle(setTitles)
         .setDescription(message.edits)
         .addField('Server', `${message.guild.name}`, true)
         .addField('Channel', `${message.channel.name}`, true)
         .addField('Author', `${message.author.tag}`, true)
         .addField('Time', `${messageSended}`, true)
-        .setColor('#407bc7')
+        .setColor('#0f7')
         .setImage(tmpUrl)
         .setTimestamp();
         clientLog.channels.cache.get(logChannel).send(delEmbed); //id channel where do you want to log
@@ -52,13 +54,13 @@ clientCheck.on("messageDelete", function(message){
       else{
       let delEmbed = new Discord.MessageEmbed() 
         .setAuthor(message.author.username, "https://cdn.discordapp.com/avatars/" + message.author.id + "/" + message.author.avatar + ".png")
-        .setTitle('Deleted message')
+        .setTitle(setTitles)
         .setDescription(message.edits)
         .addField('Server', `${message.guild.name}`, true)
         .addField('Channel', `${message.channel.name}`, true)
         .addField('Author', `${message.author.tag}`, true)
         .addField('Time', `${messageSended}`, true)
-        .setColor('#407bc7')
+        .setColor('#ff035f')
         .setTimestamp();
         clientLog.channels.cache.get(logChannel).send(delEmbed); //id channel where do you want to log
       }       
