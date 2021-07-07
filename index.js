@@ -39,7 +39,7 @@ clientCheck.on("messageDelete", function(message){
         let delEmbed = new Discord.MessageEmbed()// log message style, change if you want
         .setAuthor(message.author.username, "https://cdn.discordapp.com/avatars/" + message.author.id + "/" + message.author.avatar + ".png")
         .setTitle('Deleted message')
-        .setDescription(message.content)
+        .setDescription(message.edits)
         .addField('Server', `${message.guild.name}`, true)
         .addField('Channel', `${message.channel.name}`, true)
         .addField('Author', `${message.author.tag}`, true)
@@ -53,7 +53,7 @@ clientCheck.on("messageDelete", function(message){
       let delEmbed = new Discord.MessageEmbed() 
         .setAuthor(message.author.username, "https://cdn.discordapp.com/avatars/" + message.author.id + "/" + message.author.avatar + ".png")
         .setTitle('Deleted message')
-        .setDescription(message.content)
+        .setDescription(message.edits)
         .addField('Server', `${message.guild.name}`, true)
         .addField('Channel', `${message.channel.name}`, true)
         .addField('Author', `${message.author.tag}`, true)
