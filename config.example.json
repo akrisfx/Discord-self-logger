@@ -1,0 +1,7 @@
+{
+    "checkToken": "token main account",
+    "logToken": "bot or self-bot token",
+    "servers": ["id server 1", " id servrer2",""],
+    "tarkovServer": "",
+    "logServerChannel": "id channel where do you want to log "
+}
