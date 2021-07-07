@@ -30,6 +30,9 @@ clientLog.on('message', message => {
 
 clientCheck.on("messageDelete", function(message){
     if (!servers.includes(message.guild.id)) return;
+
+    messageSended = `${message.createdAt}`
+    messageSended = messageSended.substring(messageSended.lastIndexOf('G') - 21, messageSended.lastIndexOf('G'))
     
     if(message.attachments.first() != undefined){
         let tmpUrl = message.attachments.first().url;
@@ -40,6 +43,7 @@ clientCheck.on("messageDelete", function(message){
         .addField('Server', `${message.guild.name}`, true)
         .addField('Channel', `${message.channel.name}`, true)
         .addField('Author', `${message.author.tag}`, true)
+        .addField('Time', `${messageSended}`, true)
         .setColor('#407bc7')
         .setImage(tmpUrl)
         .setTimestamp();
@@ -53,13 +57,11 @@ clientCheck.on("messageDelete", function(message){
         .addField('Server', `${message.guild.name}`, true)
         .addField('Channel', `${message.channel.name}`, true)
         .addField('Author', `${message.author.tag}`, true)
+        .addField('Time', `${messageSended}`, true)
         .setColor('#407bc7')
         .setTimestamp();
         clientLog.channels.cache.get(logChannel).send(delEmbed); //id channel where do you want to log
-      }
-        
-
-        
+      }       
 });
 clientCheck.login(token);
 clientLog.login(tokenLog);
