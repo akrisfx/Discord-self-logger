@@ -1,22 +1,23 @@
 const Discord = require('discord.js-selfbot');
-let config
+let config;
 try{
     config = require('./config.json')
 } catch {
     config = require('./config.example.json')
 }
 
+
 const clientLog = new Discord.Client();
 const clientCheck = new Discord.Client();
-const servers = config.servers // your servers that you want to log 
-const logChannel = config.logServerChannel // id channel where do you want to log 
+const servers = config.servers; // your servers that you want to log 
+const logServerChannel = config.logServerChannel; // id channel where do you want to log 
 let tokenLog = config.logToken; //selflog // token bot in 
 let token = config.checkToken; // me // your token main acount
 let prefix = ">";
 let BotVersion = "1.1";
 tokenLog = config.logToken;             // delete this str___________________________________________
 token = config.checkToken;              // delete this str___________________________________________
-let tarkovServer = config.tarkovServer  // delete this str___________________________________________
+let logImageServer = config.logImg; // delete this str______________________________________________
 
 
 clientLog.on('ready', () => {
@@ -39,7 +40,6 @@ clientLog.on('message', message => {
 });
 
 clientCheck.on("messageDelete", function(message) {
-    let logServerChannel = '859744234886529044' //delete this string___________________________________________
     if (!servers.includes(message.guild.id)) return;
 
     let setTitles = 'Deleted message'
@@ -47,7 +47,6 @@ clientCheck.on("messageDelete", function(message) {
     messageSended = `${message.createdAt}`
     messageSended = messageSended.substring(messageSended.lastIndexOf('G') - 21, messageSended.lastIndexOf('G'))
     
-    if (message.guild.id == tarkovServer) {logServerChannel = '861283825501077504'} // delete this string___________________________________________
     if(message.attachments.first() != undefined){
         let tmpUrl = message.attachments.first().url;
         let delEmbed = new Discord.MessageEmbed()// log message style, change if you want
@@ -62,6 +61,7 @@ clientCheck.on("messageDelete", function(message) {
             .setImage(tmpUrl)
             .setTimestamp();
             clientLog.channels.cache.get(logServerChannel).send(delEmbed); //id channal where do you want to log
+            clientLog.channels.cache.get(logImageServer).send(`${tmpUrl}`) 
             
     } else {
         let delEmbed = new Discord.MessageEmbed() 
