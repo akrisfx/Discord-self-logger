@@ -10,9 +10,10 @@ try{
 const clientLog = new Discord.Client();
 const clientCheck = new Discord.Client();
 const servers = config.servers; // your servers that you want to log 
-const logServerChannel = config.logServerChannel; // id channel where do you want to log 
+const logChannel = config.logServerChannel; // id channel where do you want to log 
 let tokenLog = config.logToken; //selflog // token bot in 
 let token = config.checkToken; // me // your token main acount
+let logServerChannel = config.logServerChannel
 let prefix = ">";
 let BotVersion = "1.1";
 tokenLog = config.logToken;             // delete this str___________________________________________
